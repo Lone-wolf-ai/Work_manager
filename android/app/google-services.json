@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "238323406084",
+    "project_id": "attendance-app-38a05",
+    "storage_bucket": "attendance-app-38a05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238323406084:android:f91780612f7996bd32ac51",
+        "android_client_info": {
+          "package_name": "com.new.tanjim.work_manger_tool"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7nKPl5hY64F9RHCwJPBTOfKS_dQYd4EU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238323406084:android:d93e786db7f65a5e32ac51",
+        "android_client_info": {
+          "package_name": "com.tanjim.work_manager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7nKPl5hY64F9RHCwJPBTOfKS_dQYd4EU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238323406084:android:6fb323b08559905332ac51",
+        "android_client_info": {
+          "package_name": "com.tanjim.work_manger_tool"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7nKPl5hY64F9RHCwJPBTOfKS_dQYd4EU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
