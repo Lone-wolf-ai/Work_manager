@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 
 import '../../../core/utils/constants/string_const.dart';
 import '../../../core/utils/formatters/formatter.dart';
-import '../../../core/utils/local_storage/storage_utility.dart';
+import '../../../core/utils/local_storage/hive_storage.dart';
 import '../../../loader/datafetching.dart';
 import '../../models/datetime.dart';
 
@@ -62,7 +62,7 @@ class LocationTimeController extends GetxController {
         datetime.value = Datetime.fromJson(data);
         await localStorage.saveData(StringConst.date, Formatter.formatDatetime(datetime.value!));
         logger.d("Fetched time from API: $data");
-        isDataFetched.value = true;
+        if(datetime.value!=null)isDataFetched.value = true;
         logger.d("isDataFetched is set to true");
         if (localStorage.readData(StringConst.fasttimeloggedin) == null) {
           Get.offAll(() => const DataFetching());

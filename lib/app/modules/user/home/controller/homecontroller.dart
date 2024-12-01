@@ -5,7 +5,7 @@ import 'package:work_manger_tool/app/modules/user/attendance/controller/attendan
 
 import '../../../../core/utils/constants/string_const.dart';
 import '../../../../core/utils/formatters/formatter.dart';
-import '../../../../core/utils/local_storage/storage_utility.dart';
+import '../../../../core/utils/local_storage/hive_storage.dart';
 import '../../../../data/models/attendancerecord.dart';
 import '../../../../data/models/datetime.dart';
 import '../../../../data/service/api/locationtimecontroller.dart';

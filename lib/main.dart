@@ -11,11 +11,11 @@ import 'package:work_manger_tool/app/modules/onboarding/onboarding_screen.dart';
 import 'package:work_manger_tool/app/navigation.dart';
 import 'package:work_manger_tool/firebase_options.dart';
 import 'package:work_manger_tool/pages.dart';
-import 'app/core/utils/local_storage/storage_utility.dart';
+import 'app/core/utils/local_storage/hive_storage.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  print('Handling a background message: ${message.messageId}');
+  print('handling a background message: ${message.messageId}');
 }
 
 Future<void> requestNotificationPermissions() async {
@@ -51,8 +51,9 @@ void main() async {
       appleProvider: AppleProvider.appAttest,
     );
 
-    // Initialize Firebase Messaging
+    // initialize Firebase Messaging
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    
     await requestNotificationPermissions();
   } on FirebaseException catch (e) {
     if (kDebugMode) {

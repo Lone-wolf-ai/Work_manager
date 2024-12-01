@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/utils/constants/string_const.dart';
-import '../../../core/utils/local_storage/storage_utility.dart';
+import '../../../core/utils/local_storage/hive_storage.dart';
 import '../../auth/login/login_screen.dart';
 
 class OnboardingController extends GetxController {
