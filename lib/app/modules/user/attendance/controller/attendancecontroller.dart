@@ -42,7 +42,6 @@ class AttendanceController extends GetxController {
           .map((doc) =>
               AttendanceRecord.fromJson(doc.data() as Map<String, dynamic>))
           .toList();
-
       _logger.d(
           "Fetched records: ${fetchedRecords.map((record) => record.checkIn).toList()}");
       attendanceRecords.assignAll(fetchedRecords);

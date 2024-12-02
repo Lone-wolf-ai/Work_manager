@@ -88,11 +88,13 @@ class NavigationScreen extends StatelessWidget {
               }),
             ),
           ),
-          Positioned(
-            bottom: 30.0,
-            left: MediaQuery.of(context).size.width / 2 - 28,
-            child: const LongPressFAB(),
-          ),
+          Obx((){
+            return controller.selectedIndex.value==0?Positioned(
+              bottom: 30.0,
+              left: MediaQuery.of(context).size.width / 2 - 28,
+              child: const LongPressFAB(),
+            ):const Positioned(child:SizedBox() );
+          })
         ],
       ),
     );

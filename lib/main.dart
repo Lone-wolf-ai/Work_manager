@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:work_manger_tool/app/core/utils/constants/string_const.dart';
+import 'package:work_manger_tool/app/core/utils/local_storage/sqlitestroage.dart';
 import 'package:work_manger_tool/app/modules/auth/login/login_screen.dart';
 import 'package:work_manger_tool/app/modules/onboarding/onboarding_screen.dart';
 import 'package:work_manger_tool/app/navigation.dart';
@@ -41,6 +42,7 @@ Future<void> requestNotificationPermissions() async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  await DatabaseHelper().database;
   try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,

@@ -24,6 +24,7 @@ class OnboardingScreen extends StatelessWidget {
         children: [
           Expanded(
             child: PageView(
+
               controller: onboardingController.pageController,
               onPageChanged: onboardingController.onPageChanged,
               children: const [
