@@ -10,6 +10,7 @@ class TimeAndDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(LocationTimeController());
+    final _iselevated = true.obs;
 
     return Obx(() {
       final datetime = controller.datetime.value;
@@ -28,26 +29,83 @@ class TimeAndDate extends StatelessWidget {
           ),
         ).paddingSymmetric(vertical: 10);
       } else {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            datetime.time!.text.size(32).bold.gray700.make(),
-            Row(
+        return AnimatedPhysicalModel(
+          shape: BoxShape.rectangle,
+          elevation: _iselevated.value ? 32.0 : 0.0,
+          color: Colors.white,
+          shadowColor: Colors.black,
+          borderRadius: BorderRadius.circular(16.0),
+          duration: const Duration(milliseconds: 600),
+          curve: Curves.easeInOut,
+          child: Container(
+            width: double.infinity,
+            height: 140,
+            alignment: Alignment.center,
+            child:Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                datetime.date!.text.semiBold.gray600.make(),
-                " - ".text.semiBold.size(18).gray500.make(),
-                datetime.dayOfWeek!.text.semiBold.gray500.size(18).make(),
+                datetime.time!.text.size(32).bold.gray700.make(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    datetime.date!.text.semiBold.gray600.make(),
+                    " - ".text.semiBold.size(18).gray500.make(),
+                    datetime.dayOfWeek!.text.semiBold.gray500.size(18).make(),
+                  ],
+                ),
               ],
             ),
-          ],
-        )
-        .paddingSymmetric(horizontal: 10, vertical: 20)
-        .box
-        .width(double.infinity)
-        .height(140)
-        .make();
+          ),
+        ).onTap(() {
+          _iselevated.value = !_iselevated.value;
+        });
       }
     });
   }
 }
+
+
+// AnimatedContainer(
+// width: 200,
+// height: 2,
+// duration: const Duration(milliseconds: 500),
+// decoration: BoxDecoration(
+// color: Colors.red, borderRadius: BorderRadius.circular(12)),
+// child: Column(
+// mainAxisAlignment: MainAxisAlignment.center,
+// children: [
+// datetime.time!.text.size(32).bold.gray700.make(),
+// Row(
+// mainAxisAlignment: MainAxisAlignment.center,
+// children: [
+// datetime.date!.text.semiBold.gray600.make(),
+// " - ".text.semiBold.size(18).gray500.make(),
+// datetime.dayOfWeek!.text.semiBold.gray500.size(18).make(),
+// ],
+// ),
+// ],
+// ),
+// )
+
+
+
+// Column(
+// mainAxisAlignment: MainAxisAlignment.center,
+// children: [
+// datetime.time!.text.size(32).bold.gray700.make(),
+// Row(
+// mainAxisAlignment: MainAxisAlignment.center,
+// children: [
+// datetime.date!.text.semiBold.gray600.make(),
+// " - ".text.semiBold.size(18).gray500.make(),
+// datetime.dayOfWeek!.text.semiBold.gray500.size(18).make(),
+// ],
+// ),
+// ],
+// )
+//     .paddingSymmetric(horizontal: 10, vertical: 20)
+//     .box
+//     .width(double.infinity)
+// .height(140)
+// .make()
+

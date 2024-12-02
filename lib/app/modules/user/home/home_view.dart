@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:work_manger_tool/app/animation/pagetransition/pagescaletransition.dart';
 
 import '../notice/controller/noticecontroller.dart';
 import '../task/controller/task_controller.dart';
@@ -88,7 +89,7 @@ class HomePage extends StatelessWidget {
                       return Obx(
                         () => TaskBox(
                           ongoing: true,
-                          onpress: () => Get.to(() => TaskDetail(
+                          onpress: () => Navigator.of(context).push(PageScaleTransition(page:TaskDetail(
                                 task: taskdata,
                                 onSubtaskUpdated: () {
                                   donenum.value = taskcontroller
@@ -96,7 +97,7 @@ class HomePage extends StatelessWidget {
                                       .where((v) => v.done!)
                                       .length;
                                 },
-                              )),
+                              ) )),
                           done: donenum.value,
                           title: taskcontroller.ongoinglist[index].title!,
                           total: taskcontroller

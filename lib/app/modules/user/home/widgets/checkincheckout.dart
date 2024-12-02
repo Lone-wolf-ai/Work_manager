@@ -19,34 +19,47 @@ class ChekInCheckOut extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller=Get.put(HomeController());
-    return Container(
-      
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-      decoration: BoxDecoration(
+    final controller = Get.put(HomeController());
+    final iselevated = true.obs;
+    return Obx(
+      () => AnimatedPhysicalModel(
+        shape: BoxShape.rectangle,
+        elevation: iselevated.value ? 32.0 : 0.0,
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Vx.gray300,width: 2),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Obx(
-        ()=> Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _buildColumn("Check IN", controller.record.value.checkIn!=null?controller.record.value.checkIn!.time:"__/__"),
-            _buildColumn("Check Out", controller.record.value.checkOut!=null?controller.record.value.checkOut!.time:"__/__"),
-            _buildColumn("Total Hrs", controller.record.value.totalHours ?? "__/__"),
-          ],
-        ),
-      ),
-    ).paddingSymmetric(horizontal: 16);
+        shadowColor: Colors.black,
+        borderRadius: BorderRadius.circular(16.0),
+        duration: const Duration(milliseconds: 600),
+        curve: Curves.easeInOut,
+        child: Container(
+            width: double.infinity,
+            height: 140,
+            alignment: Alignment.center,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+              child: Obx(
+                () => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    _buildColumn(
+                        "Check IN",
+                        controller.record.value.checkIn != null
+                            ? controller.record.value.checkIn!.time
+                            : "__/__"),
+                    _buildColumn(
+                        "Check Out",
+                        controller.record.value.checkOut != null
+                            ? controller.record.value.checkOut!.time
+                            : "__/__"),
+                    _buildColumn("Total Hrs",
+                        controller.record.value.totalHours ?? "__/__"),
+                  ],
+                ),
+              ),
+            ).paddingSymmetric(horizontal: 16)),
+      ).onTap(() {
+        iselevated.value = !iselevated.value;
+      }),
+    );
   }
 
   Widget _buildColumn(String title, String? value) {
@@ -60,7 +73,6 @@ class ChekInCheckOut extends StatelessWidget {
     );
   }
 }
-
 
 class ShimmerBox extends StatelessWidget {
   final double height;
@@ -93,3 +105,4 @@ class ShimmerBox extends StatelessWidget {
     );
   }
 }
+

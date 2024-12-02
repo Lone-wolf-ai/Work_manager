@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:work_manger_tool/app/core/utils/helpers/filedownloader.dart';
 
 import '../../../core/utils/constants/string_const.dart';
 import '../../../core/utils/popups/loaders.dart';
@@ -42,7 +43,6 @@ class TaskDetail extends StatelessWidget {
                       Loaders.successSnackBar(
                           title: "Submited",
                           message: "Your task is submited for reviewing");
-                      
                     });
                     Get.back();
                   } else {
@@ -79,7 +79,8 @@ class TaskDetail extends StatelessWidget {
                 .centered()
                 .paddingOnly(top: 12, bottom: 12)
                 .box
-                .border(width: 2, color: Vx.gray500).rounded
+                .border(width: 2, color: Vx.gray500)
+                .rounded
                 .make()
                 .paddingSymmetric(vertical: 12),
 
@@ -122,8 +123,14 @@ class TaskDetail extends StatelessWidget {
                       Icons.file_download,
                       color: Vx.white,
                     ),
-                    onPressed: () {
-                      // download action
+                    onPressed: () async {
+                      try {
+                        final filePath = await downloadFile(
+                            task.detailAttachment!, task.title!);
+                        print("File downloaded to: $filePath");
+                      } catch (e) {
+                        print("Failed to download file: $e");
+                      }
                     },
                   ).box.roundedFull.gray600.make(),
                 ),
@@ -194,5 +201,3 @@ class TaskDetail extends StatelessWidget {
     );
   }
 }
-
-

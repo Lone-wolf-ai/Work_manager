@@ -27,7 +27,7 @@ class HomeController extends GetxController {
   final loader = false.obs;
   final LocalStorage localStorage = LocalStorage();
   final Logger logger = Logger();
-
+  final isElevated=true.obs;
   @override
   void onInit() async {
     super.onInit();
