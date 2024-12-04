@@ -26,7 +26,6 @@ class LocationTimeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    logger.d("Initializing LocationTimeController");
     _requestLocationPermissionAndFetchTime();
   }
 
@@ -34,13 +33,11 @@ class LocationTimeController extends GetxController {
   void onClose() {
     _timeSubscription?.cancel();
     super.onClose();
-    logger.d("LocationTimeController closed");
   }
 
   Future<void> _requestLocationPermissionAndFetchTime() async {
     final permission = await Permission.location.request();
     if (permission.isGranted) {
-      logger.d("Location permission granted");
       await _fetchTimeFromAPI();
     } else {
       _handleError('Location permission denied');
@@ -62,9 +59,7 @@ class LocationTimeController extends GetxController {
         final data = jsonDecode(response.body);
         datetime.value = Datetime.fromJson(data);
         await localStorage.saveData(StringConst.date, Formatter.formatDatetime(datetime.value!));
-        logger.d("Fetched time from API: $data");
         isDataFetched.value = true;
-        logger.d("isDataFetched is set to true");
         if (localStorage.readData(StringConst.fasttimeloggedin) == null) {
           Get.offAll(() => const DataFetching());
         }
@@ -107,7 +102,6 @@ class LocationTimeController extends GetxController {
             ..date = "${currentDateTime.year}-${currentDateTime.month.toString().padLeft(2, '0')}-${currentDateTime.day.toString().padLeft(2, '0')}"
             ..time = "${currentDateTime.hour.toString().padLeft(2, '0')}:${currentDateTime.minute.toString().padLeft(2, '0')}:${currentDateTime.second.toString().padLeft(2, '0')}";
         });
-        logger.d("Updated datetime: $currentDateTime");
       }
     });
   }

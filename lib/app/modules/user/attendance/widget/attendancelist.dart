@@ -18,6 +18,7 @@ class AttendanceList extends StatelessWidget {
     return Obx(
       ()=> ListView.separated(
           shrinkWrap: true,
+          reverse: true,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             final record = controller.attendanceRecords[index];

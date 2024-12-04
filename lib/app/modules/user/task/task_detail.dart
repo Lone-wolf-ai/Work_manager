@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../core/utils/constants/string_const.dart';
@@ -42,7 +44,6 @@ class TaskDetail extends StatelessWidget {
                       Loaders.successSnackBar(
                           title: "Submited",
                           message: "Your task is submited for reviewing");
-                      
                     });
                     Get.back();
                   } else {
@@ -79,7 +80,8 @@ class TaskDetail extends StatelessWidget {
                 .centered()
                 .paddingOnly(top: 12, bottom: 12)
                 .box
-                .border(width: 2, color: Vx.gray500).rounded
+                .border(width: 2, color: Vx.gray500)
+                .rounded
                 .make()
                 .paddingSymmetric(vertical: 12),
 
@@ -118,13 +120,14 @@ class TaskDetail extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: IconButton(
-                    icon: const Icon(
-                      Icons.file_download,
-                      color: Vx.white,
-                    ),
-                    onPressed: (){}
-                    
-                  ).box.roundedFull.gray600.make(),
+                      icon: const Icon(
+                        Icons.file_download,
+                        color: Vx.white,
+                      ),
+                      onPressed: () async {
+                       
+                        
+                      }).box.roundedFull.gray600.make(),
                 ),
               ],
             )
@@ -193,5 +196,3 @@ class TaskDetail extends StatelessWidget {
     );
   }
 }
-
-

@@ -11,18 +11,19 @@ class CustomAnimationScreen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      backgroundColor: Vx.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            DotLottieLoader.fromAsset(StringConst.animation1,
+            DotLottieLoader.fromAsset(asset,
                 frameBuilder: (BuildContext ctx, DotLottie? dotlottie) {
               if (dotlottie != null) {
                 return Lottie.memory(dotlottie.animations.values.single);
               } else {
                 return Container();
               }
-            }),
+            }).box.width(double.infinity).make().pSymmetric(h: 12),
             detail
                 .text
                 .gray400

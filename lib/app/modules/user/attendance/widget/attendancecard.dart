@@ -57,7 +57,7 @@ class AttendanceCard extends StatelessWidget {
                 8.heightBox,
                 totalHours.text.gray700.bold.size(16).make()
               ],
-            ).box.make().paddingSymmetric(horizontal: 16)
+            ).box.make()
           ],
         )
       ],

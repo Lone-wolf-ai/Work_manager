@@ -6,6 +6,6 @@ AppBar profileappbar() {
   return AppBar(
     backgroundColor: Vx.white,
     title: "Profile".text.bold.black.size(24).make(),
-    actions: [IconButton(onPressed: () {}, icon: const Icon(Iconsax.edit,color: Vx.black,))],
+   
   );
 }

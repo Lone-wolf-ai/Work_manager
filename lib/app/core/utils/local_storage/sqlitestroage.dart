@@ -1,88 +1,81 @@
-import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:work_manger_tool/app/core/utils/constants/string_const.dart';
 
-import '../../../data/models/attendancerecord.dart';
-import '../../../data/models/datetime.dart';
+import '../../../data/models/crudmodel.dart';
 
-class DatabaseHelper {
-  static final DatabaseHelper _instance = DatabaseHelper._internal();
-  factory DatabaseHelper() => _instance;
+class DataClass {
+  Database? _db;
 
-  DatabaseHelper._internal();
-
-  static Database? _database;
-
-  Future<Database?> get database async {
-    if (_database != null) return _database;
-    _database = await _initDatabase();
-    return _database;
+  Future<Database> initdb() async {
+    String databasePath = await getDatabasesPath();
+    String path = join(databasePath, "cruddb.db");
+    var db = await openDatabase(path, version: 1, onCreate: oncreate);
+    return db;
   }
 
-  Future<Database> _initDatabase() async {
-    String path = join(await getDatabasesPath(), 'attendance_database.db');
-    return await openDatabase(
-      path,
-      version: 1,
-      onCreate: _onCreate,
-    );
+  void oncreate(Database db, int version) async {
+    await db.execute(
+        "CREATE TABLE crudmodels(${StringConst.name} TEXT, ${StringConst.description} TEXT, ${StringConst.price} DOUBLE)");
   }
 
-  Future<void> _onCreate(Database db, int version) async {
-    await db.execute('''
-      CREATE TABLE attendance_records (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        checkIn TEXT,
-        checkOut TEXT,
-        totalHours TEXT
-      )
-    ''');
+  Future<Database> get db async {
+    if (_db == null) {
+      _db = await initdb();
+      return _db!;
+    } else {
+      return _db!;
+    }
   }
 
-  Future<int> insertAttendanceRecord(AttendanceRecord record) async {
-    final db = await database;
-    return await db!.insert(
-      'attendance_records',
-      {
-        'checkIn': record.checkIn?.toJson(),
-        'checkOut': record.checkOut?.toJson(),
-        'totalHours': record.totalHours,
-      },
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+  Future<int> create(Crudmodel crud) async {
+
+    await initdb();
+    var dbready = await db;
+    return await dbready.rawInsert(
+        "INSERT INTO crudmodels(${StringConst.name},${StringConst.description},${StringConst.price}) VALUES ('${crud.name}','${crud.description}','${crud.price}')");
   }
 
-  Future<List<AttendanceRecord>> getAttendanceRecords() async {
-    final db = await database;
-    final List<Map<String, dynamic>> maps = await db!.query('attendance_records');
-    return List.generate(maps.length, (i) {
-      return AttendanceRecord(
-        checkIn: maps[i]['checkIn'] != null ? Datetime.fromJson(maps[i]['checkIn']) : null,
-        checkOut: maps[i]['checkOut'] != null ? Datetime.fromJson(maps[i]['checkOut']) : null,
-        totalHours: maps[i]['totalHours'],
-      );
-    });
+  Future<int> update(Crudmodel crud) async {
+    var dbready = await db;
+    return await dbready.rawUpdate(
+        "UPDATE crudmodels SET ${StringConst.description}='${crud.description}',${StringConst.price}='${crud.price}' WHERE ${StringConst.name}='${crud.name}'");
   }
 
-  Future<int> updateAttendanceRecord(AttendanceRecord record, int id) async {
-    final db = await database;
-    return await db!.update(
-      'attendance_records',
-      {
-        'checkIn': record.checkIn?.toJson(),
-        'checkOut': record.checkOut?.toJson(),
-        'totalHours': record.totalHours,
-      },
-      where: 'id = ?',
-      whereArgs: [id],
-    );
+  Future<int> delete(String name) async {
+    var dbready = await db;
+    return await dbready.rawDelete("DELETE FROM crudmodels WHERE ${StringConst.name}='$name'");
   }
 
-  Future<int> deleteAttendanceRecord(int id) async {
-    final db = await database;
-    return await db!.delete(
-      'attendance_records',
-      where: 'id = ?',
-      whereArgs: [id],
-    );
+  Future<Crudmodel?> read(String name) async {
+    var dbready = await db;
+    var read =
+        await dbready.rawQuery("SELECT * FROM crudmodels WHERE ${StringConst.name}='$name'");
+    if (read.isNotEmpty) {
+      return Crudmodel.fromMap(read[0]);
+    } else {
+      return null; // Handle case when no data is found
+    }
   }
+  Future<ReadAllResult>readAll()async{
+    var dbready=await db;
+    double total=0;
+    List<Map>list=await dbready.rawQuery("SELECT * FROM crudmodels");
+    List<Crudmodel>data=[];
+    for(int i=0;i<list.length;i++){
+      data.add(Crudmodel(name: list[i]["name"], price:list[i]["price"], description: list[i]["description"]));
+      if(list[i]["price"]!=null){
+        total += list[i]["price"];
+      }
+    }
+   return ReadAllResult(data, total);
+  }
+}
+
+
+class ReadAllResult {
+  final List<Crudmodel> data;
+  final double total;
+
+  ReadAllResult(this.data, this.total);
 }

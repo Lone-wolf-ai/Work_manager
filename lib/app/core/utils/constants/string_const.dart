@@ -13,8 +13,11 @@ class StringConst {
 static const String windspeed = "assets/icons/windspeed.png";
 //animation
 static const animation1="assets/animation/animation1.lottie";
-static const animation2="assets/animation/animation2.lottie";
-
+static const animation2="assets/animation/animation3.lottie";
+//data
+  static const name='name';
+  static const description='description';
+  static const price='price';
 //datafetching data
 static const screendata1="Fetching your information from the database....";
 static const screendata2="Loading time data of your Zone....";
