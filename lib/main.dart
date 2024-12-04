@@ -14,35 +14,12 @@ import 'package:work_manger_tool/firebase_options.dart';
 import 'package:work_manger_tool/pages.dart';
 import 'app/core/utils/local_storage/hive_storage.dart';
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  print('handling a background message: ${message.messageId}');
-}
 
-Future<void> requestNotificationPermissions() async {
-  NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
-    alert: true,
-    announcement: false,
-    badge: true,
-    carPlay: false,
-    criticalAlert: false,
-    provisional: false,
-    sound: true,
-  );
 
-  if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-    print('User granted permission');
-  } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
-    print('User granted provisional permission');
-  } else {
-    print('User declined or has not accepted permission');
-  }
-}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
-  await DatabaseHelper().database;
   try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
@@ -53,10 +30,6 @@ void main() async {
       appleProvider: AppleProvider.appAttest,
     );
 
-    // initialize Firebase Messaging
-    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-    
-    await requestNotificationPermissions();
   } on FirebaseException catch (e) {
     if (kDebugMode) {
       print("Firebase initialization failed: ${e.message}");
@@ -91,6 +64,8 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -117,9 +92,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Firebase Push Notifications'),
+        title: const Text('Firebase Push Notifications'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Waiting for notifications...'),
       ),
     );
