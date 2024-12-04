@@ -5,7 +5,19 @@ class StringConst {
   static const second ="assets/onboarding/1.json";
   static const first="assets/onboarding/2.json";
   static const third="assets/onboarding/3.json";
+//
+  static const  degree = "°";
+  static const apiKey = "27c0a0ac444d8e24641392f64253b094";
+ static const String clouds = "assets/icons/clouds.png";
+ static const String humidity = "assets/icons/humidity.png";
+static const String windspeed = "assets/icons/windspeed.png";
+//animation
+static const animation1="assets/animation/animation1.lottie";
+static const animation2="assets/animation/animation2.lottie";
 
+//datafetching data
+static const screendata1="Fetching your information from the database....";
+static const screendata2="Loading time data of your Zone....";
 //system
   static const registered = "REGISTERD";
   static const verified = "VERIFIED";

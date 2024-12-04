@@ -6,14 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:work_manger_tool/app/core/utils/constants/string_const.dart';
-import 'package:work_manger_tool/app/core/utils/local_storage/sqlitestroage.dart';
 import 'package:work_manger_tool/app/modules/auth/login/login_screen.dart';
 import 'package:work_manger_tool/app/modules/onboarding/onboarding_screen.dart';
 import 'package:work_manger_tool/app/navigation.dart';
 import 'package:work_manger_tool/firebase_options.dart';
 import 'package:work_manger_tool/pages.dart';
-import 'app/core/utils/local_storage/hive_storage.dart';
-
+import 'app/core/utils/local_storage/storage_utility.dart';
 
 
 
@@ -30,6 +28,7 @@ void main() async {
       appleProvider: AppleProvider.appAttest,
     );
 
+    // Initialize Firebase Messaging
   } on FirebaseException catch (e) {
     if (kDebugMode) {
       print("Firebase initialization failed: ${e.message}");
@@ -75,16 +74,12 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('Got a message whilst in the foreground!');
-      print('Message data: ${message.data}');
 
-      if (message.notification != null) {
-        print('Message also contained a notification: ${message.notification}');
-      }
+
+
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('Message clicked!');
     });
   }
 

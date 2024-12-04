@@ -2,8 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:work_manger_tool/app/animation/pagetransition/pagescaletransition.dart';
+import 'package:work_manger_tool/animation/pagetransition/pagescaletransition.dart';
 
+import '../../../../animation/pagetransition/page_scaletransition.dart';
 import '../notice/controller/noticecontroller.dart';
 import '../task/controller/task_controller.dart';
 import '../task/task_detail.dart';
@@ -30,7 +31,7 @@ class HomePage extends StatelessWidget {
         body: SingleChildScrollView(
           child: Padding(
             padding:
-                const EdgeInsets.symmetric(horizontal: 16), // Unified padding
+            const EdgeInsets.symmetric(horizontal: 16), // Unified padding
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
                 LayoutBuilder(
                   builder: (context, constraints) {
                     return Obx(
-                      () => ListView.separated(
+                          () => ListView.separated(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         itemCount: noticeecontroller.notices.length,
@@ -76,7 +77,7 @@ class HomePage extends StatelessWidget {
                 ),
                 16.heightBox,
                 Obx(
-                  () => ListView.separated(
+                      () => ListView.separated(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (_, index) {
@@ -87,17 +88,17 @@ class HomePage extends StatelessWidget {
                           .where((v) => v.done!)
                           .length;
                       return Obx(
-                        () => TaskBox(
+                            () => TaskBox(
                           ongoing: true,
-                          onpress: () => Navigator.of(context).push(PageScaleTransition(page:TaskDetail(
-                                task: taskdata,
-                                onSubtaskUpdated: () {
-                                  donenum.value = taskcontroller
-                                      .ongoinglist[index].subtasks!
-                                      .where((v) => v.done!)
-                                      .length;
-                                },
-                              ) )),
+                          onpress: () => Navigator.of(context).push(PageScaleTransition(page: TaskDetail(
+                            task: taskdata,
+                            onSubtaskUpdated: () {
+                              donenum.value = taskcontroller
+                                  .ongoinglist[index].subtasks!
+                                  .where((v) => v.done!)
+                                  .length;
+                            },
+                          ) )),
                           done: donenum.value,
                           title: taskcontroller.ongoinglist[index].title!,
                           total: taskcontroller
@@ -110,7 +111,7 @@ class HomePage extends StatelessWidget {
                     separatorBuilder: (_, index) => const SizedBox(height: 16),
                     itemCount: taskcontroller.ongoinglist.length,
                   ),
-                ),  
+                ),
               ],
             ),
           ),

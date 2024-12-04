@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:work_manger_tool/app/animation/pagetransition/page_scaletransition.dart';
-import 'package:work_manger_tool/app/animation/pagetransition/pagefadetransition.dart';
+import 'package:work_manger_tool/animation/pagetransition/pagescaletransition.dart';
 
 import '../../register/register_screen.dart';
 
@@ -23,7 +22,7 @@ class ToRegisterScreen extends StatelessWidget {
             .gray600
             .size(16)
             .make()
-            .onTap(() => Navigator.of(context).push(PageFadeTransition(page:RegisterScreen())))
+            .onTap(() => Navigator.of(context).push(PageScaleTransition(page: const RegisterScreen())))
       ],
     );
   }

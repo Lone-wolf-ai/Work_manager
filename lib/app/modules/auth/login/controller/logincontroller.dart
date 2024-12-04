@@ -9,7 +9,7 @@ import '../../../../../loader.dart';
 import '../../../../core/utils/constants/string_const.dart';
 import '../../../../core/utils/exceptions/firebase_exceptions.dart';
 import '../../../../core/utils/exceptions/platform_exceptions.dart';
-import '../../../../core/utils/local_storage/hive_storage.dart';
+import '../../../../core/utils/local_storage/storage_utility.dart';
 import '../../../../core/utils/popups/loaders.dart';
 import '../../../../data/service/api/locationtimecontroller.dart';
 import '../../emailvarification/emailverificationscreen.dart';
@@ -37,7 +37,7 @@ class LoginController extends GetxController {
     bool isConnected = await InternetConnection().hasInternetAccess;
     if (!isConnected) {
       Get.snackbar('Error', 'No internet connection detected.');
-      return; // Exit the function if no internet
+      return; 
     }
     try {
       if (loginEmailController.text.trim() != '' &&

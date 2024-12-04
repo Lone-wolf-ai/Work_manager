@@ -1,6 +1,6 @@
 {
-    "name": "work_manager",
-    "short_name": "work_manager",
+    "name": "work_manager1",
+    "short_name": "work_manager1",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

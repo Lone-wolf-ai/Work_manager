@@ -93,7 +93,7 @@ class NavigationScreen extends StatelessWidget {
               bottom: 30.0,
               left: MediaQuery.of(context).size.width / 2 - 28,
               child: const LongPressFAB(),
-            ):const Positioned(child:SizedBox() );
+            ):Container();
           })
         ],
       ),

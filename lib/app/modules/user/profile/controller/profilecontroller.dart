@@ -8,7 +8,7 @@ import 'package:logger/logger.dart';
 import '../../../../core/utils/constants/string_const.dart';
 import '../../../../core/utils/exceptions/firebase_exceptions.dart';
 import '../../../../core/utils/exceptions/platform_exceptions.dart';
-import '../../../../core/utils/local_storage/hive_storage.dart';
+import '../../../../core/utils/local_storage/storage_utility.dart';
 import '../../../../core/utils/popups/loaders.dart';
 import '../../../../data/models/userdata.dart';
 import '../../../../data/service/repository/authrepository.dart';

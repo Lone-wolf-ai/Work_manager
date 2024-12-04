@@ -41,7 +41,7 @@ class AttendanceCard extends StatelessWidget {
                 8.heightBox,
                 checkedIn.text.gray700.bold.size(16).make()
               ],
-            ).box.width(width * 0.25).make(),
+            ).box.make().paddingOnly(right: 8,left: 8),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -49,7 +49,7 @@ class AttendanceCard extends StatelessWidget {
                 8.heightBox,
                 checkedOut.text.gray700.bold.size(16).make()
               ],
-            ).box.width(width * 0.22).make(),
+            ).box.make().paddingSymmetric(horizontal: 8),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -57,7 +57,7 @@ class AttendanceCard extends StatelessWidget {
                 8.heightBox,
                 totalHours.text.gray700.bold.size(16).make()
               ],
-            ).box.width(width * 0.2).make()
+            ).box.make().paddingSymmetric(horizontal: 16)
           ],
         )
       ],

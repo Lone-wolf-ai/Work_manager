@@ -69,6 +69,8 @@ class TaskView extends StatelessWidget {
     return AppBar(
       title: "Check your Task".text.bold.size(24).black.make(),
       backgroundColor: Vx.white,
+            actions: ["To-dos".text.white.make().box.gray400.p12.rounded.make().onTap((){}).paddingOnly(right: 12)],
+
     );
   }
 }

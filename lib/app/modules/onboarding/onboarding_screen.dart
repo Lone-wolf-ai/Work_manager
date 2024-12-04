@@ -24,7 +24,6 @@ class OnboardingScreen extends StatelessWidget {
         children: [
           Expanded(
             child: PageView(
-
               controller: onboardingController.pageController,
               onPageChanged: onboardingController.onPageChanged,
               children: const [
@@ -59,7 +58,7 @@ class OnboardingScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
-              onPressed: onboardingController.nextPage,
+              onPressed:()=> onboardingController.nextPage(context),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black, 
                 shape: RoundedRectangleBorder(

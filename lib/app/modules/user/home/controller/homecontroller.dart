@@ -1,11 +1,15 @@
 
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+import 'package:work_manger_tool/app/data/models/weathermodel.dart';
+import 'package:work_manger_tool/app/data/service/api/weatherdata.dart';
 import 'package:work_manger_tool/app/modules/user/attendance/controller/attendancecontroller.dart';
 
 import '../../../../core/utils/constants/string_const.dart';
 import '../../../../core/utils/formatters/formatter.dart';
-import '../../../../core/utils/local_storage/hive_storage.dart';
+import '../../../../core/utils/local_storage/storage_utility.dart';
 import '../../../../data/models/attendancerecord.dart';
 import '../../../../data/models/datetime.dart';
 import '../../../../data/service/api/locationtimecontroller.dart';
@@ -27,10 +31,33 @@ class HomeController extends GetxController {
   final loader = false.obs;
   final LocalStorage localStorage = LocalStorage();
   final Logger logger = Logger();
-  final isElevated=true.obs;
+    final Rx<Weathemodel> emptyWeathemodel = Weathemodel(
+    coord: Coord(lon: 0.0, lat: 0.0),
+    weather: [],
+    base: '',
+    main: Main(
+        temp: 0.0,
+        feelsLike: 0.0,
+        tempMin: 0.0,
+        tempMax: 0.0,
+        pressure: 0,
+        humidity: 0),
+    visibility: 0,
+    wind: Wind(speed: 0.0, deg: 0),
+    clouds: Clouds(all: 0),
+    dt: 0,
+    sys: Sys(type: 0, id: 0, country: '', sunrise: 0, sunset: 0),
+    timezone: 0,
+    id: 0,
+    name: '',
+    cod: 0,
+  ).obs;
+  final locationname="".obs;
   @override
   void onInit() async {
     super.onInit();
+    emptyWeathemodel.value= await WeatherService().getCurrentWeather();
+    getAddressFromLatLng();
     if (localStorage.readData(StringConst.attendancerecord) != null) {
       logger.d("local data is not null");
       final AttendanceRecord temp=localStorage.readData(StringConst.attendancerecord);
@@ -47,6 +74,16 @@ class HomeController extends GetxController {
     }else{
       logger.d("local storage null");
     }
+  }
+    Future<void> getAddressFromLatLng() async {
+         final position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best
+      );
+      List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude); // Example coordinates for San Francisco
+      Placemark place = placemarks[0];
+      locationname.value = "${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.country}";
+
+    
   }
 
   getattendanceData() {

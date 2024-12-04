@@ -11,7 +11,7 @@ class Leaveapplication {
     this.attachment,
   });
 
-  // factory method to create a Leaveapplication instance from a map
+  // Factory method to create a Leaveapplication instance from a map
   factory Leaveapplication.fromMap(Map<String, dynamic> map) {
     return Leaveapplication(
       title: map['title'] ?? '',
@@ -21,7 +21,7 @@ class Leaveapplication {
     );
   }
 
-  // method to convert a Leaveapplication instance to a map 
+  // Method to convert a Leaveapplication instance to a map 
   Map<String, dynamic> toMap() {
     return {
       'title': title,

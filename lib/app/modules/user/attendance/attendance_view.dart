@@ -1,5 +1,7 @@
 import 'widget/appbar.dart';
 import 'widget/attendancelist.dart';
+import 'widget/attendancestatus.dart';
+import 'widget/chartwidget.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 

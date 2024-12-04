@@ -22,7 +22,7 @@ class ChekInCheckOut extends StatelessWidget {
     final controller = Get.put(HomeController());
     final iselevated = true.obs;
     return Obx(
-      () => AnimatedPhysicalModel(
+          () => AnimatedPhysicalModel(
         shape: BoxShape.rectangle,
         elevation: iselevated.value ? 32.0 : 0.0,
         color: Colors.white,
@@ -32,12 +32,12 @@ class ChekInCheckOut extends StatelessWidget {
         curve: Curves.easeInOut,
         child: Container(
             width: double.infinity,
-            height: 140,
+            height: 120,
             alignment: Alignment.center,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               child: Obx(
-                () => Row(
+                    () => Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     _buildColumn(
