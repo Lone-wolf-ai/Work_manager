@@ -5,7 +5,7 @@ import 'package:logger/logger.dart';
 
 import '../../../../core/utils/popups/loaders.dart';
 import '../../../../data/service/repository/authrepository.dart';
-import '../../../../navigation.dart';
+import '../../../../core/utils/navigation/navigation.dart';
 
 class EmailVerificationController extends GetxController {
   static EmailVerificationController get instance => Get.find();

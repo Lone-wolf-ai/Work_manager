@@ -9,7 +9,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:work_manger_tool/app/core/utils/constants/string_const.dart';
 import 'package:work_manger_tool/app/modules/auth/login/login_screen.dart';
 import 'package:work_manger_tool/app/modules/onboarding/onboarding_screen.dart';
-import 'package:work_manger_tool/app/navigation.dart';
+import 'package:work_manger_tool/app/core/utils/navigation/navigation.dart';
 import 'package:work_manger_tool/firebase_options.dart';
 import 'package:work_manger_tool/pages.dart';
 import 'app/core/utils/local_storage/storage_utility.dart';

@@ -8,7 +8,7 @@ import 'package:work_manger_tool/app/core/utils/customScreen/dotlottieanitmation
 import '../core/utils/constants/string_const.dart';
 import '../core/utils/local_storage/storage_utility.dart';
 import '../modules/user/attendance/controller/attendancecontroller.dart';
-import '../navigation.dart';
+import '../core/utils/navigation/navigation.dart';
 
 class DataFetching extends StatelessWidget {
   const DataFetching({super.key});

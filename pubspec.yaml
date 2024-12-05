@@ -69,7 +69,7 @@ dependencies:
   geocoding: ^3.0.0
   dio: ^5.7.0
   flutter_downloader: ^1.11.8
-  flutter_animated_splash: ^0.0.10
+  flutter_stripe: ^11.3.0
 
 dev_dependencies:
   flutter_test:

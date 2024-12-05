@@ -1,13 +1,13 @@
 import 'package:velocity_x/velocity_x.dart';
-import 'modules/user/attendance/attendance_view.dart';
-import 'modules/user/home/home_view.dart';
-import 'modules/user/home/widgets/longpressfab/view/view.dart';
-import 'modules/user/profile/profile_view.dart';
+import '../../../modules/user/attendance/attendance_view.dart';
+import '../../../modules/user/home/home_view.dart';
+import 'longpressfab/view/view.dart';
+import '../../../modules/user/profile/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
-import 'modules/user/task/task_view.dart';
+import '../../../modules/user/task/task_view.dart';
 
 class NavigationScreen extends StatelessWidget {
   const NavigationScreen({super.key});
