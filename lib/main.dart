@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
     final LocalStorage localStorage = LocalStorage();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Attendance App',
+      title: 'Attendance app',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
