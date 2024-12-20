@@ -14,14 +14,9 @@ import 'package:work_manger_tool/firebase_options.dart';
 import 'package:work_manger_tool/pages.dart';
 import 'app/core/utils/local_storage/storage_utility.dart';
 
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-    await FlutterDownloader.initialize(
-    debug: true,
-    ignoreSsl: true 
-  );
+  await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
   await GetStorage.init();
   try {
     await Firebase.initializeApp(
@@ -51,12 +46,12 @@ class MyApp extends StatelessWidget {
     final LocalStorage localStorage = LocalStorage();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Attendance app',
+      title: 'Work_manager',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
-      home:((localStorage.readData(StringConst.isfirst)) == null)
+      home: ((localStorage.readData(StringConst.isfirst)) == null)
           ? const OnboardingScreen()
           : (localStorage.readData(StringConst.loggedin) == null ||
                   localStorage.readData(StringConst.loggedin) == false)
@@ -78,14 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {});
 
-
-
-    });
-
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-    });
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {});
   }
 
   @override

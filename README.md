@@ -7,7 +7,6 @@ Here you can get employee attendance,Notify them,Manage task To your team and so
 
 
 ![Screenshot_1733315034](https://github.com/user-attachments/assets/180edb80-1361-4911-bd73-acaee5144f31)
-
 ![Screenshot_1733315210](https://github.com/user-attachments/assets/94bb3493-60d0-4056-af69-ba7b6fa0d417)
 ![Screenshot_1733315213](https://github.com/user-attachments/assets/3e88a9a0-dc60-4490-aab0-db4c90298687)
 ![Screenshot_1733315217](https://github.com/user-attachments/assets/bfe4340e-8889-4d5c-abbc-351187f09334)
